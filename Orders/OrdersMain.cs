@@ -14,7 +14,7 @@ namespace Orders
         static void Main()
         {
             Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
-            var dataMapper = new dataMapper();
+            var dataMapper = new DataMapper();
             var consoleWriter = new ConsoleWriter();
             var categories = dataMapper.GetAllCategories();
             var products = dataMapper.GetAllProducts();

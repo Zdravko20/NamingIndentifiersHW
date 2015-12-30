@@ -4,3 +4,6 @@ D:\HW\Naming Identifiers Homework\Application2\bin\Debug\Application2.pdb
 D:\HW\Naming Identifiers Homework\Application2\obj\Debug\3. Application2.csprojResolveAssemblyReference.cache
 D:\HW\Naming Identifiers Homework\Application2\obj\Debug\Application2.exe
 D:\HW\Naming Identifiers Homework\Application2\obj\Debug\Application2.pdb
+D:\HW\Naming Identifiers Homework\NamingIndentifiersHW\Application2\bin\Debug\Application2.exe.config
+D:\HW\Naming Identifiers Homework\NamingIndentifiersHW\Application2\obj\Debug\Application2.exe
+D:\HW\Naming Identifiers Homework\NamingIndentifiersHW\Application2\obj\Debug\Application2.pdb

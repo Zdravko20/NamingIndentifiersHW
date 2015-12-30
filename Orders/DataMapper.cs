@@ -5,20 +5,20 @@ using Orders.Models;
 
 namespace Orders
 {
-    public class dataMapper
+    public class DataMapper
     {
         private readonly string categoriesFileName;
         private readonly string productsFileName;
         private readonly string ordersFileName;
 
-        public dataMapper(string categoriesFileName, string productsFileName, string ordersFileName)
+        public DataMapper(string categoriesFileName, string productsFileName, string ordersFileName)
         {
             this.categoriesFileName = categoriesFileName;
             this.productsFileName = productsFileName;
             this.ordersFileName = ordersFileName;
         }
 
-        public dataMapper()
+        public DataMapper()
             : this("../../Data/categories.txt", "../../Data/products.txt", "../../Data/orders.txt")
         {
         }

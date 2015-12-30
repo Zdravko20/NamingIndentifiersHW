@@ -4,3 +4,6 @@ D:\HW\Naming Identifiers Homework\Orders\bin\Debug\Orders.exe
 D:\HW\Naming Identifiers Homework\Orders\bin\Debug\Orders.pdb
 D:\HW\Naming Identifiers Homework\Orders\obj\Debug\Orders.exe
 D:\HW\Naming Identifiers Homework\Orders\obj\Debug\Orders.pdb
+D:\HW\Naming Identifiers Homework\NamingIndentifiersHW\Orders\bin\Debug\Orders.exe.config
+D:\HW\Naming Identifiers Homework\NamingIndentifiersHW\Orders\obj\Debug\Orders.exe
+D:\HW\Naming Identifiers Homework\NamingIndentifiersHW\Orders\obj\Debug\Orders.pdb

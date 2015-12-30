@@ -4,3 +4,6 @@ D:\HW\Naming Identifiers Homework\ConsoleApplication1\bin\Debug\ConsoleApplicati
 D:\HW\Naming Identifiers Homework\ConsoleApplication1\obj\Debug\1. ConsoleApplication1.csprojResolveAssemblyReference.cache
 D:\HW\Naming Identifiers Homework\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
 D:\HW\Naming Identifiers Homework\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
+D:\HW\Naming Identifiers Homework\NamingIndentifiersHW\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+D:\HW\Naming Identifiers Homework\NamingIndentifiersHW\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+D:\HW\Naming Identifiers Homework\NamingIndentifiersHW\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb

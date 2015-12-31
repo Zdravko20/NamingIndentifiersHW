@@ -59,7 +59,7 @@ namespace Application2
                 if (hasExploded)
                 {
                     DumpGameField(mines);
-                    Console.Write("\nYou died hroicly with {0} to4ki. " + "Enter your name: ", count);
+                    Console.Write("\nYou died heroicly with {0} points. " + "Enter your name: ", count);
                     string nickName = Console.ReadLine();
                     LeaderBoard leaderBoard = new LeaderBoard(nickName, count);
                     if (champions.Count < 5)
@@ -264,23 +264,24 @@ namespace Application2
             return gameField;
         }
 
-        private static void Calculate(char[,] field)
-        {
-            int col = field.GetLength(0);
-            int row = field.GetLength(1);
+        //Unused method
+        //private static void Calculate(char[,] field)
+        //{
+        //    int col = field.GetLength(0);
+        //    int row = field.GetLength(1);
 
-            for (int i = 0; i < col; i++)
-            {
-                for (int j = 0; j < row; j++)
-                {
-                    if (field[i, j] != '*')
-                    {
-                        char mineCount = CountMines(field, i, j);
-                        field[i, j] = mineCount;
-                    }
-                }
-            }
-        }
+        //    for (int i = 0; i < col; i++)
+        //    {
+        //        for (int j = 0; j < row; j++)
+        //        {
+        //            if (field[i, j] != '*')
+        //            {
+        //                char mineCount = CountMines(field, i, j);
+        //                field[i, j] = mineCount;
+        //            }
+        //        }
+        //    }
+        //}
 
         private static char CountMines(char[,] mines, int row, int col)
         {

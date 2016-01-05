@@ -1,10 +1,10 @@
-﻿using System;
-
-namespace ConsoleApplication1
+﻿namespace ConsoleApplication1
 {
-    class MatrixMultiplication
+    using System;
+
+    internal class MatrixMultiplication
     {
-        static void Main()
+        private static void Main()
         {
             var firstMatrix = new double[,] { { 1, 3 }, { 5, 7 } };
             var secondMatrix = new double[,] { { 4, 2 }, { 1, 5 } };
@@ -16,12 +16,12 @@ namespace ConsoleApplication1
                 {
                     Console.Write(resultMatrix[i, j] + " ");
                 }
+
                 Console.WriteLine();
             }
-
         }
 
-        static double[,] MultiplyMatrices(double[,] firstMatrix, double[,] secondMatrix)
+        private static double[,] MultiplyMatrices(double[,] firstMatrix, double[,] secondMatrix)
         {
             if (firstMatrix.GetLength(1) != secondMatrix.GetLength(0))
             {
@@ -36,10 +36,11 @@ namespace ConsoleApplication1
                 {
                     for (int k = 0; k < firstMatrixCol; k++)
                     {
-                        newMatrix[i, j] += firstMatrix[i, k] * secondMatrix[k, j];
+                        newMatrix[i, j] += firstMatrix[i, k]*secondMatrix[k, j];
                     }
                 }
             }
+
             return newMatrix;
         }
     }

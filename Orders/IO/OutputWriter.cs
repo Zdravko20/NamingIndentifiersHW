@@ -1,6 +1,6 @@
 ﻿namespace Orders.IO
 {
-    abstract class OutputWriter
+    internal abstract class OutputWriter
     {
         public abstract void Write(string line);
     }

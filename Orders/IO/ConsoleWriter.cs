@@ -1,8 +1,8 @@
-﻿using System;
-
-namespace Orders.IO
+﻿namespace Orders.IO
 {
-    class ConsoleWriter :OutputWriter
+    using System;
+
+    internal class ConsoleWriter : OutputWriter
     {
         public override void Write(string line)
         {

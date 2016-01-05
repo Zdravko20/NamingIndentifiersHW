@@ -1,6 +1,6 @@
 ﻿namespace Application2
 {
-    class Minesweeper
+    public class Minesweeper
     {
         public static void Main()
         {
@@ -8,5 +8,4 @@
             gameEngine.Run();
         }
     }
-
 }

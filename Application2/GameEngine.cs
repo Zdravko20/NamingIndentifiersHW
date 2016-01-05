@@ -1,25 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Application2
+﻿namespace Application2
 {
+    using System;
+    using System.Collections.Generic;
+
     public class GameEngine
     {
-        private string inputLine = string.Empty;
+        private const int MaxTurns = 35;
+        private readonly List<LeaderBoard> champions;
+
+        private int col;
+        private int count;
         private char[,] gameField = CreateGameField();
-        private char[,] mines = GenerateMines();
-        private int count = 0;
-        private bool hasExploded = false;
-        private List<LeaderBoard> champions;
-        private int row = 0;
-        private int col = 0;
+        private bool hasEnded;
+        private bool hasExploded;
         private bool hasStarted = true;
-        private const int maxTurns = 35;
-        private bool hasEnded = false;
+        private string inputLine = string.Empty;
+        private char[,] mines = GenerateMines();
+        private int row;
 
         public GameEngine()
         {
-            champions = new List<LeaderBoard>(6);
+            this.champions = new List<LeaderBoard>(6);
         }
 
         public void Run()
@@ -32,123 +33,126 @@ namespace Application2
                         "Let's play minesweeper! The top command shows top 5 players, " +
                         "reset command resets the game and the exit " +
                         "command stops the game. Good luck!");
-                    DumpGameField(gameField);
-                    hasStarted = false;
+                    DumpGameField(this.gameField);
+                    this.hasStarted = false;
                 }
 
                 Console.Write("Choose row and column : ");
                 try
                 {
-                    inputLine = Console.ReadLine().Trim();
-                    if (inputLine.Length == 3)
+                    this.inputLine = Console.ReadLine().Trim();
+                    if (this.inputLine.Length == 3)
                     {
-                        if (int.TryParse(inputLine[0].ToString(), out row) &&
-                            int.TryParse(inputLine[2].ToString(), out col)
-                            && row <= gameField.GetLength(0) && col <= gameField.GetLength(1))
+                        if (int.TryParse(this.inputLine[0].ToString(), out this.row) &&
+                            int.TryParse(this.inputLine[2].ToString(), out this.col)
+                            && this.row <= this.gameField.GetLength(0) && this.col <= this.gameField.GetLength(1))
                         {
-                            inputLine = "turn";
+                            this.inputLine = "turn";
                         }
                     }
-                    ManageCommand();
+
+                    this.ManageCommand();
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
                 }
 
-                if (hasExploded)
+                if (this.hasExploded)
                 {
-                    DumpGameField(mines);
-                    Console.Write("\nYou died heroicly with {0} points. " + "Enter your name: ", count);
+                    DumpGameField(this.mines);
+                    Console.Write("\nYou died heroicly with {0} points. " + "Enter your name: ", this.count);
                     string nickName = Console.ReadLine();
-                    LeaderBoard leaderBoard = new LeaderBoard(nickName, count);
-                    if (champions.Count < 5)
+                    LeaderBoard leaderBoard = new LeaderBoard(nickName, this.count);
+                    if (this.champions.Count < 5)
                     {
-                        champions.Add(leaderBoard);
+                        this.champions.Add(leaderBoard);
                     }
                     else
                     {
-                        for (int i = 0; i < champions.Count; i++)
+                        for (int i = 0; i < this.champions.Count; i++)
                         {
-                            if (champions[i].Points < leaderBoard.Points)
+                            if (this.champions[i].Points < leaderBoard.Points)
                             {
-                                champions.Insert(i, leaderBoard);
-                                champions.RemoveAt(champions.Count - 1);
+                                this.champions.Insert(i, leaderBoard);
+                                this.champions.RemoveAt(this.champions.Count - 1);
                                 break;
                             }
                         }
                     }
 
-                    champions.Sort((LeaderBoard r1, LeaderBoard r2) => String.Compare(r2.PlayerName, r1.PlayerName, StringComparison.Ordinal));
-                    champions.Sort((LeaderBoard r1, LeaderBoard r2) => r2.Points.CompareTo(r1.Points));
-                    CreateLeaderBoard(champions);
+                    this.champions.Sort(
+                        (LeaderBoard r1, LeaderBoard r2) =>
+                            string.Compare(r2.PlayerName, r1.PlayerName, StringComparison.Ordinal));
+                    this.champions.Sort((LeaderBoard r1, LeaderBoard r2) => r2.Points.CompareTo(r1.Points));
+                    CreateLeaderBoard(this.champions);
 
-                    gameField = CreateGameField();
-                    mines = GenerateMines();
-                    count = 0;
-                    hasExploded = false;
-                    hasStarted = true;
+                    this.gameField = CreateGameField();
+                    this.mines = GenerateMines();
+                    this.count = 0;
+                    this.hasExploded = false;
+                    this.hasStarted = true;
                 }
 
-                if (hasEnded)
+                if (this.hasEnded)
                 {
                     Console.WriteLine("\nCongratulations! You opened 35 cells without spilling any blood!");
-                    DumpGameField(mines);
+                    DumpGameField(this.mines);
                     Console.WriteLine("Enter your name: ");
                     string name = Console.ReadLine();
-                    LeaderBoard points = new LeaderBoard(name, count);
-                    champions.Add(points);
-                    CreateLeaderBoard(champions);
-                    gameField = CreateGameField();
-                    mines = GenerateMines();
-                    count = 0;
-                    hasEnded = false;
-                    hasStarted = true;
+                    LeaderBoard points = new LeaderBoard(name, this.count);
+                    this.champions.Add(points);
+                    CreateLeaderBoard(this.champions);
+                    this.gameField = CreateGameField();
+                    this.mines = GenerateMines();
+                    this.count = 0;
+                    this.hasEnded = false;
+                    this.hasStarted = true;
                 }
             }
-            while (inputLine != "exit");
+            while (this.inputLine != "exit");
             Console.WriteLine("Made in Bulgaria");
             Console.Read();
         }
 
         private void ManageCommand()
         {
-            switch (inputLine)
+            switch (this.inputLine)
             {
                 case "top":
-                    CreateLeaderBoard(champions);
+                    CreateLeaderBoard(this.champions);
                     break;
                 case "restart":
-                    gameField = CreateGameField();
-                    mines = GenerateMines();
-                    DumpGameField(gameField);
-                    hasExploded = false;
-                    hasStarted = false;
+                    this.gameField = CreateGameField();
+                    this.mines = GenerateMines();
+                    DumpGameField(this.gameField);
+                    this.hasExploded = false;
+                    this.hasStarted = false;
                     break;
                 case "exit":
                     Console.WriteLine("Bye, bye!");
                     break;
                 case "turn":
-                    if (mines[row, col] != '*')
+                    if (this.mines[this.row, this.col] != '*')
                     {
-                        if (mines[row, col] == '-')
+                        if (this.mines[this.row, this.col] == '-')
                         {
-                            ContinueTurns(gameField, mines, row, col);
-                            count++;
+                            ContinueTurns(this.gameField, this.mines, this.row, this.col);
+                            this.count++;
                         }
 
-                        if (maxTurns == count)
+                        if (MaxTurns == this.count)
                         {
-                            hasEnded = true;
+                            this.hasEnded = true;
                         }
                         else
                         {
-                            DumpGameField(gameField);
+                            DumpGameField(this.gameField);
                         }
                     }
                     else
                     {
-                        hasExploded = true;
+                        this.hasExploded = true;
                     }
 
                     break;
@@ -196,6 +200,7 @@ namespace Application2
                 {
                     Console.Write("{0} ", board[i, j]);
                 }
+
                 Console.Write("|");
                 Console.WriteLine();
             }
@@ -264,25 +269,24 @@ namespace Application2
             return gameField;
         }
 
-        //Unused method
-        //private static void Calculate(char[,] field)
-        //{
-        //    int col = field.GetLength(0);
-        //    int row = field.GetLength(1);
+        // Unused method
+        // private static void Calculate(char[,] field)
+        // {
+        // int col = field.GetLength(0);
+        // int row = field.GetLength(1);
 
-        //    for (int i = 0; i < col; i++)
-        //    {
-        //        for (int j = 0; j < row; j++)
-        //        {
-        //            if (field[i, j] != '*')
-        //            {
-        //                char mineCount = CountMines(field, i, j);
-        //                field[i, j] = mineCount;
-        //            }
-        //        }
-        //    }
-        //}
-
+        // for (int i = 0; i < col; i++)
+        // {
+        // for (int j = 0; j < row; j++)
+        // {
+        // if (field[i, j] != '*')
+        // {
+        // char mineCount = CountMines(field, i, j);
+        // field[i, j] = mineCount;
+        // }
+        // }
+        // }
+        // }
         private static char CountMines(char[,] mines, int row, int col)
         {
             int minesQuantity = 0;

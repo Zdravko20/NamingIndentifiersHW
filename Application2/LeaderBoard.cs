@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace Application2
+﻿namespace Application2
 {
+    using System;
+
     public class LeaderBoard
     {
         private string playerName;
@@ -15,27 +15,22 @@ namespace Application2
 
         public string PlayerName
         {
-            get
-            {
-                return playerName;
-            }
+            get { return this.playerName; }
 
             set
             {
-                if (String.IsNullOrEmpty(value))
+                if (string.IsNullOrEmpty(value))
                 {
                     throw new ArgumentNullException("Name cannot be empty");
                 }
+
                 this.playerName = value;
             }
         }
 
         public int Points
         {
-            get
-            {
-                return points;
-            }
+            get { return this.points; }
 
             set
             {
@@ -43,6 +38,7 @@ namespace Application2
                 {
                     throw new ArgumentOutOfRangeException("Points cannot be negative");
                 }
+
                 this.points = value;
             }
         }
